@@ -1,0 +1,17 @@
+server:
+  port: 8083
+  
+# spring.mvc.view.prefix=/WEB-INF/jsp/
+# spring.mvc.view.suffix=.jsp
+
+# spring.mvc.static-path-pattern=/static/**
+
+spring:
+  mvc:
+    static-path-pattern: /static/**
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
+
+      
