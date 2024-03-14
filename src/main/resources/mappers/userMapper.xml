@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- mapper.xml 파일 DTD 를 위한 코드 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 연결할 repository 경로 -->
+<mapper namespace="com.jinju.memo.user.repository.UserRepository">
+
+	<insert id="insertUser" parameterType="map">
+		INSERT INTO
+			`user`
+		(
+			`loginId`
+			, `password`
+			, `name`
+			, `email`
+		)
+		VALUE
+		(
+			#{loginId}
+			, #{password}
+			, #{name}
+			, #{email}
+		)
+	</insert>
+	
+</mapper>
