@@ -3,6 +3,8 @@ package com.jinju.memo.user.repository;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.jinju.memo.user.domain.User;
+
 @Mapper
 public interface UserRepository {
 	
@@ -14,6 +16,12 @@ public interface UserRepository {
 			, @Param("password") String password
 			, @Param("name") String name
 			, @Param("email") String email);
+	
+	// 로그인 한 아이디와 패스워드가 일치하는 사용자 정보는 하나이거나 없거나이다. 그래서 리턴 타입은 리스트가 아닌 딱 하나의 사용자 정보, 딱 하나의 행을 조회하는 리턴 타입으로 잡아줄것이다. 그래서 한 행을 저장하기 위한 타입 User 테이블에 매칭이 되는 Entity 클래스가 만들어져야 함 
+	public User selectUser(
+			@Param("loginId") String loginId
+			, @Param("password") String password);
+	
 	
 }
 

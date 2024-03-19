@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jinju.memo.common.EncryptUtils;
+import com.jinju.memo.user.domain.User;
 import com.jinju.memo.user.repository.UserRepository;
 
 @Service
@@ -23,6 +24,16 @@ public class UserService {
 		// 그래서 암호화와 관련된 기능들을 모은 클래스를 새로 하나 만들거임
 		String encryptPasswordpassword = EncryptUtils.md5(password);
 		return userRepository.insertUser(loginId, encryptPasswordpassword, name, email);
+	}
+	
+	// 일치하는 사용자 정보를 찾아오는 것
+	public User getUser(String loginId, String password) {
+		
+		// 전달된 원본 비밀번호를 암호화 하면 된다.
+		String encryptPassword = EncryptUtils.md5(password);
+		
+		return userRepository.selectUser(loginId, encryptPassword);
+		
 	}
 	
 }
