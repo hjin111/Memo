@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메모 리스트</title>
+<title>메모 보기</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <link rel="stylesheet" href="/static/css/style.css" type="text/css">
 </head>
@@ -16,28 +15,19 @@
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		<section class="contents d-flex justify-content-center">
 			<div class="post-box my-5">
-				<h1 class="text-center">메모 리스트</h1>
-				<table class="table text-center">
-					<thead>
-						<tr>
-							<th>No.</th>
-							<th>제목</th>
-							<th>시간</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="post" items="${postList}"><!-- var 속성에다가 list 안에 들어 있는 하나의 객체를 저장하기 위한 변수를 하나 지정 items 속성에는 반복 시킬 리스트안 model에다 세팅해놓은 key 이름으로 해당 리스트 객체를 얻어옴 -->
-						<tr>
-							<td>${post.id}</td>
-							<td><a href="/post/detail-view?id=${post.id}">${post.title}</a></td>
-							<td><fmt:formatDate value="${post.createdAt}" pattern="yyyy년 M월 d일 H시 m분" /></td>
-						</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+				<h1 class="text-center">메모 보기</h1>
 				
-				<div class="d-flex justify-content-end">
-					<a href="/post/create-view" class="btn btn-secondary">글쓰기</a>
+				<div class="d-flex mt-3">
+					<label class="col-2">제목 : </label>
+					<input type="text" class="form-control col-10" id="titleInput" value="${post.title}">
+				</div>
+				<textarea class="form-control mt-3" rows="7" id="contentsInput">${post.contents}</textarea>
+				<div class="d-flex justify-content-between mt-3">
+					<div>
+						<a href="/post/list-view" class="btn btn-secondary">목록으로</a>
+						<button type="button" class="btn btn-danger">삭제하기</button>
+					</div>
+					<button type="button" class="btn btn-secondary" id="saveBtn">수정</button>
 				</div>
 			</div>
 		</section>
